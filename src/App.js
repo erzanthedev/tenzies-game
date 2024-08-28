@@ -1,6 +1,10 @@
+import { useState } from "react";
+import { nanoid } from "nanoid";
 import Die from "./Die";
 
 export default function App() {
+  const [dice, setDice] = useState(allNewDice());
+
   function allNewDice() {
     const newDiceArr = [];
     for (let i = 0; i < 10; i++) {
@@ -10,21 +14,11 @@ export default function App() {
     return newDiceArr;
   }
 
-  console.log(allNewDice());
+  const dieElements = dice.map((die) => <Die key={nanoid()} value={die} />);
+  console.log(dieElements);
   return (
     <main>
-      <div className="dice">
-        <Die value="1" />
-        <Die value="2" />
-        <Die value="3" />
-        <Die value="4" />
-        <Die value="5" />
-        <Die value="6" />
-        <Die value="6" />
-        <Die value="2" />
-        <Die value="3" />
-        <Die value="4" />
-      </div>
+      <div className="dice">{dieElements} </div>
     </main>
   );
 }
