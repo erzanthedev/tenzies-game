@@ -15,10 +15,11 @@ export default function App() {
   }
 
   const dieElements = dice.map((die) => <Die key={nanoid()} value={die} />);
-  console.log(dieElements);
+
   return (
     <main>
       <div className="dice">{dieElements} </div>
+      <button className="roll-btn">Roll</button>
     </main>
   );
 }
