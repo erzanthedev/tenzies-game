@@ -1,6 +1,16 @@
 import Die from "./Die";
 
 export default function App() {
+  function allNewDice() {
+    const newDiceArr = [];
+    for (let i = 0; i < 10; i++) {
+      const random = Math.floor(Math.random() * 6) + 1;
+      newDiceArr.push(random);
+    }
+    return newDiceArr;
+  }
+
+  console.log(allNewDice());
   return (
     <main>
       <div className="dice">
