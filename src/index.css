@@ -54,6 +54,10 @@ main {
   line-height: 24.07px;
 }
 
+.message {
+  color: #1e8221;
+}
+
 .roll-btn {
   border: none;
   border-radius: 10px;

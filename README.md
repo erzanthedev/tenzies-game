@@ -10,10 +10,6 @@ Welcome to the **Tenzies Game** project! 🎮
 
 ![image](https://github.com/user-attachments/assets/f26cef9c-df87-4867-be11-3011a104f51f)
 
-
-
-
-
 ---
 
 ## 🎯 Project Purpose
