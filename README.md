@@ -8,6 +8,9 @@ Welcome to the **Tenzies Game** project! 🎮
 
 **Tenzies** is a fun and interactive dice game where the goal is to roll the dice until all of them show the same number. Players can select which dice to hold and which to re-roll, making it a game of both luck and strategy.
 
+![image](https://github.com/user-attachments/assets/3b08a9df-9313-406c-bc45-4988c16e30c3)
+
+
 ---
 
 ## 🎯 Project Purpose
