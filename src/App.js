@@ -16,19 +16,21 @@ export default function App() {
       setTenzies(true);
       console.log("You Won");
     }
-    // at the same time the values are the same
-    // if both are true then tenzies is set to true/ console log "You Won"
   }, [dice]);
+
+  function newDiceObj() {
+    const random = Math.floor(Math.random() * 6) + 1;
+    return {
+      value: random,
+      isHeld: false,
+      id: nanoid(),
+    };
+  }
 
   function allNewDice() {
     const newDiceArr = [];
     for (let i = 0; i < 10; i++) {
-      const random = Math.floor(Math.random() * 6) + 1;
-      const dieObj = {
-        value: random,
-        isHeld: false,
-        id: nanoid(),
-      };
+      const dieObj = newDiceObj();
       newDiceArr.push(dieObj);
     }
     return newDiceArr;
@@ -37,13 +39,7 @@ export default function App() {
   function rollDice() {
     setDice((oldDice) =>
       oldDice.map((die) => {
-        return die.isHeld
-          ? { ...die }
-          : {
-              value: Math.floor(Math.random() * 6) + 1,
-              isHeld: false,
-              id: nanoid(),
-            };
+        return die.isHeld ? { ...die } : newDiceObj();
       }),
     );
   }
