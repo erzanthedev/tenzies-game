@@ -37,11 +37,18 @@ export default function App() {
   }
 
   function rollDice() {
-    setDice((oldDice) =>
-      oldDice.map((die) => {
-        return die.isHeld ? { ...die } : newDiceObj();
-      }),
-    );
+    // Reset Game
+    if (tenzies) {
+      setDice(allNewDice());
+      setTenzies(false);
+    } else {
+      // Roll Dice
+      setDice((oldDice) =>
+        oldDice.map((die) => {
+          return die.isHeld ? { ...die } : newDiceObj();
+        }),
+      );
+    }
   }
 
   function holdDice(id) {
@@ -50,11 +57,6 @@ export default function App() {
         return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
       }),
     );
-  }
-
-  function resetGame() {
-    setDice(allNewDice());
-    setTenzies(false);
   }
 
   const dieElements = dice.map((die) => (
@@ -77,7 +79,7 @@ export default function App() {
         </p>
       </div>
       <div className="dice">{dieElements} </div>
-      <button onClick={tenzies ? resetGame : rollDice} className="roll-btn">
+      <button onClick={rollDice} className="roll-btn">
         {tenzies ? "New Game" : "Roll"}
       </button>
     </main>
