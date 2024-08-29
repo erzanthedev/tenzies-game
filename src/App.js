@@ -9,7 +9,12 @@ export default function App() {
     const newDiceArr = [];
     for (let i = 0; i < 10; i++) {
       const random = Math.floor(Math.random() * 6) + 1;
-      newDiceArr.push(random);
+      const dieObj = {
+        value: random,
+        isHeld: false,
+        id: nanoid(),
+      };
+      newDiceArr.push(dieObj);
     }
     return newDiceArr;
   }
@@ -18,7 +23,9 @@ export default function App() {
     setDice(allNewDice);
   }
 
-  const dieElements = dice.map((die) => <Die key={nanoid()} value={die} />);
+  console.log(dice);
+
+  const dieElements = dice.map((die) => <Die key={die.id} value={die.value} />);
 
   return (
     <main>
