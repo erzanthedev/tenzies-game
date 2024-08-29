@@ -1,7 +1,12 @@
-const Die = (props) => {
+const Die = ({ value, handleHoldDice, isHeld }) => {
+  const styles = {
+    backgroundColor: isHeld ? "#59E391" : "white",
+  };
   return (
-    <div className="die-box">
-      <h1 className="die-num">{props.value}</h1>
+    <div style={styles} className="die-box">
+      <h1 className="die-num" onClick={handleHoldDice}>
+        {value}
+      </h1>
     </div>
   );
 };
