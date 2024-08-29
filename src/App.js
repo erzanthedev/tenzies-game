@@ -14,6 +14,10 @@ export default function App() {
     return newDiceArr;
   }
 
+  function rollDice() {
+    setDice(allNewDice);
+  }
+
   const dieElements = dice.map((die) => <Die key={nanoid()} value={die} />);
 
   return (
@@ -26,7 +30,9 @@ export default function App() {
         </p>
       </div>
       <div className="dice">{dieElements} </div>
-      <button className="roll-btn">Roll</button>
+      <button onClick={rollDice} className="roll-btn">
+        Roll
+      </button>
     </main>
   );
 }
