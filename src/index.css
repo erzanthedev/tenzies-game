@@ -76,3 +76,25 @@ main {
   transform: translateY(1px);
   box-shadow: inset 5px 5px 15px -1px rgb(0 0 0 / 0.8);
 }
+
+.info {
+  text-align: center;
+  width: 400px;
+}
+
+.info-header {
+  color: #2b283a;
+  font-size: 3.5rem;
+  line-height: 29.93px;
+  letter-spacing: -0.03em;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.info-text {
+  color: #4a4e74;
+  font-family: Inter;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
