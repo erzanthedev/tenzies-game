@@ -75,7 +75,7 @@ export default function App() {
       </div>
       <div className="dice">{dieElements} </div>
       <button onClick={rollDice} className="roll-btn">
-        Roll
+        {tenzies ? "New Game" : "Roll"}
       </button>
     </main>
   );
