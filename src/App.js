@@ -4,18 +4,20 @@ import Die from "./Die";
 
 export default function App() {
   const [dice, setDice] = useState(allNewDice());
-  // const [tenzies, setTenzies] = useState(false);
+  const [tenzies, setTenzies] = useState(false);
 
-  // useEffect(() => {
-  // const allHeldDice = dice.every((die) => die.isHeld);
-  // const firstNum = dice[0].value;
-  // const allValueSame = dice.every((die) => die.value === firstNum);
-  // console.log("Is all values the same", allValueSame);
-  // console.log("Are all die held", allHeldDice);
+  useEffect(() => {
+    const allHeldDice = dice.every((die) => die.isHeld);
+    const firstNum = dice[0].value;
+    const allValueSame = dice.every((die) => die.value === firstNum);
 
-  // at the same time the values are the same
-  // if both are true then tenzies is set to true/ console log "You Won"
-  // }, [dice]);
+    if (allHeldDice && allValueSame) {
+      setTenzies(true);
+      console.log("You Won");
+    }
+    // at the same time the values are the same
+    // if both are true then tenzies is set to true/ console log "You Won"
+  }, [dice]);
 
   function allNewDice() {
     const newDiceArr = [];
