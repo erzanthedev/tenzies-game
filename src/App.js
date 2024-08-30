@@ -30,8 +30,7 @@ export default function App() {
   function allNewDice() {
     const newDiceArr = [];
     for (let i = 0; i < 10; i++) {
-      const dieObj = newDiceObj();
-      newDiceArr.push(dieObj);
+      newDiceArr.push(newDiceObj());
     }
     return newDiceArr;
   }
@@ -84,7 +83,10 @@ export default function App() {
       <button onClick={rollDice} className="roll-btn">
         {tenzies ? "New Game" : "Roll"}
       </button>
-      {tenzies && <p className="count">Rolled Dice {count} times</p>}
+      <div className="results-info">
+        {tenzies && <p>Rolled Dice {count} times</p>}
+        {tenzies && <p>Best Time: 0.00s</p>}
+      </div>
     </main>
   );
 }
