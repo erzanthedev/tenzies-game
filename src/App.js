@@ -11,9 +11,6 @@ export default function App() {
   const [bestTime, setBestTime] = useState(Infinity);
   const [isGameRunning, setIsGameRunning] = useState(false);
 
-  console.log("Is Game running: ", isGameRunning);
-  console.log("Start Time: ", startTime);
-
   useEffect(() => {
     const allHeldDice = dice.every((die) => die.isHeld);
     const firstNum = dice[0].value;
@@ -22,8 +19,16 @@ export default function App() {
     if (allHeldDice && allValueSame) {
       setIsGameRunning(false);
       setTenzies(true);
+      if (!isGameRunning && tenzies) {
+        const endTime = Date.now();
+        const elapsedTime = endTime - startTime;
+
+        if (elapsedTime < bestTime) {
+          setBestTime(elapsedTime);
+        }
+      }
     }
-  }, [dice]);
+  }, [dice, bestTime, isGameRunning, startTime, tenzies]);
 
   function timeFormat(time) {
     let totalSeconds = Math.floor(time / 1000);
@@ -113,7 +118,7 @@ export default function App() {
       </button>
       <div>
         {tenzies && <p>Rolled Dice {count} times</p>}
-        <p>Best Time:</p>
+        <p>Best Time: {bestTime !== Infinity ? timeFormat(bestTime) : "N/A"}</p>
       </div>
     </main>
   );
