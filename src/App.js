@@ -7,6 +7,12 @@ export default function App() {
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [count, setCount] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+  const [bestTime, setBestTime] = useState(Infinity);
+  const [isGameRunning, setIsGameRunning] = useState(false);
+
+  console.log("Is Game running: ", isGameRunning);
+  console.log("Start Time: ", startTime);
 
   useEffect(() => {
     const allHeldDice = dice.every((die) => die.isHeld);
@@ -14,9 +20,24 @@ export default function App() {
     const allValueSame = dice.every((die) => die.value === firstNum);
 
     if (allHeldDice && allValueSame) {
+      setIsGameRunning(false);
       setTenzies(true);
     }
   }, [dice]);
+
+  function timeFormat(time) {
+    let totalSeconds = Math.floor(time / 1000);
+    let hours = Math.floor(totalSeconds / 3600);
+    totalSeconds %= 3600;
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
+
+    hours = hours.toString().padStart(2, "0");
+    minutes = minutes.toString().padStart(2, "0");
+    seconds = seconds.toString().padStart(2, "0");
+
+    return `${hours}:${minutes}:${seconds}`;
+  }
 
   function newDiceObj() {
     const random = Math.floor(Math.random() * 6) + 1;
@@ -37,10 +58,13 @@ export default function App() {
 
   function rollDice() {
     setCount((oldCount) => oldCount + 1);
+
     // Reset Game
     if (tenzies) {
       setDice(allNewDice());
       setTenzies(false);
+      setCount(0);
+      setStartTime(null);
     } else {
       // Roll Dice
       setDice((oldDice) =>
@@ -52,6 +76,10 @@ export default function App() {
   }
 
   function holdDice(id) {
+    if (!isGameRunning && startTime === null) {
+      setIsGameRunning(true);
+      setStartTime(Date.now());
+    }
     setDice((oldDice) =>
       oldDice.map((die) => {
         return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
@@ -83,9 +111,9 @@ export default function App() {
       <button onClick={rollDice} className="roll-btn">
         {tenzies ? "New Game" : "Roll"}
       </button>
-      <div className="results-info">
+      <div>
         {tenzies && <p>Rolled Dice {count} times</p>}
-        {tenzies && <p>Best Time: 0.00s</p>}
+        <p>Best Time:</p>
       </div>
     </main>
   );
