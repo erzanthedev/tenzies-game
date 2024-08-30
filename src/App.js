@@ -8,8 +8,10 @@ export default function App() {
   const [tenzies, setTenzies] = useState(false);
   const [count, setCount] = useState(0);
   const [startTime, setStartTime] = useState(null);
-  const [bestTime, setBestTime] = useState(Infinity);
   const [isGameRunning, setIsGameRunning] = useState(false);
+  const [bestTime, setBestTime] = useState(
+    JSON.parse(localStorage.getItem("BestTime")) || Infinity,
+  );
 
   useEffect(() => {
     const allHeldDice = dice.every((die) => die.isHeld);
@@ -25,6 +27,7 @@ export default function App() {
 
         if (elapsedTime < bestTime) {
           setBestTime(elapsedTime);
+          localStorage.setItem("BestTime", JSON.stringify(elapsedTime));
         }
       }
     }
